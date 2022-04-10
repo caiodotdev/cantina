@@ -124,7 +124,7 @@ import os
  
 INSTALLED_APPS += ['rest_framework', 'rest_framework.authtoken', 'django.contrib.sites',
                    'allauth', 'allauth.account', 'allauth.socialaccount', 'rest_auth',
-                   'rest_auth.registration', 'corsheaders', 'app', 'django_crud_generator',
+                   'rest_auth.registration', 'corsheaders', 'app',
                    'django_filters', 'djmoney']
  
 SITE_ID = 1
