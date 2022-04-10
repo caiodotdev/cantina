@@ -4,16 +4,13 @@
 from django.contrib import messages
 from django.contrib.admin.utils import NestedObjects
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.core.exceptions import FieldDoesNotExist
 from django.db import transaction
+from django.db.models import Q
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import (
     CreateView, DeleteView, UpdateView
 )
 from django.views.generic.list import ListView
-
-from django.db.models import Q
-
 
 try:
     from django.core.urlresolvers import reverse_lazy
@@ -26,8 +23,6 @@ from app.mixins import PedidoMixin
 from app.conf import PEDIDO_DETAIL_URL_NAME, PEDIDO_LIST_URL_NAME
 
 from django_datatables_view.base_datatable_view import BaseDatatableView
-
-from app.utils import upload_image, upload_file
 
 import django_filters
 

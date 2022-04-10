@@ -45,6 +45,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'cantina.urls'
@@ -115,7 +116,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-INSTALLED_APPS += ['rest_framework', 'rest_framework.authtoken', 'django.contrib.sites',
+INSTALLED_APPS += [ 'whitenoise.runserver_nostatic', 'rest_framework', 'rest_framework.authtoken', 'django.contrib.sites',
                    'allauth', 'allauth.account', 'allauth.socialaccount', 'rest_auth',
                    'rest_auth.registration', 'corsheaders', 'app',
                    'django_filters', 'djmoney']
@@ -124,7 +125,7 @@ SITE_ID = 1
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
-MIDDLEWARE += ['corsheaders.middleware.CorsMiddleware']
+MIDDLEWARE += ['corsheaders.middleware.CorsMiddleware', ]
 
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 
