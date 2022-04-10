@@ -1,0 +1,51 @@
+﻿{% extends 'base.html' %}
+{% load static %}
+{% load form_utils %}
+{% block content %}
+    <div id="top" class="row">
+        <div class="col-sm-3">
+            <h2> Produtos</h2>
+        </div>
+        <div class="col-sm-3 col-sm-offset-6">
+            <a href="/admin/app/pedido/add/" class="btn btn-primary pull-right h2"><i
+                    class="fa fa-plus"></i> Abrir Pedido
+            </a>
+        </div>
+    </div> <!-- /#top -->
+    <hr/>
+    <div class="row">
+        {% for item in items %}
+            <div class="col-sm-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <img class="img-responsive" src="{{ item.img }}"/>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-12 text-center">
+                                {{ item.nome }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label>Restantes</label>
+                                <p>{{ item.qtd_total }}</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Vendidos</label>
+                                <p>{{ item.itempedido_set.all|count_vendidos }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+        });
+    </script>
+
+{% endblock %}
