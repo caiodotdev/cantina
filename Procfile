@@ -1,1 +1,3 @@
-web: gunicorn quickwebds.wsgi --log-file -
+release: python manage.py migrate
+
+web: gunicorn cantina.wsgi --log-file -
