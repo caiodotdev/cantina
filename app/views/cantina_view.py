@@ -1,6 +1,6 @@
 from django.views.generic import ListView
 
-from app.models import Item, Caixa
+from app.models import Item, Caixa, Pedido
 
 
 class ListInitial(ListView):
@@ -22,9 +22,18 @@ class ListInitial(ListView):
         total = caixa.valor_total - caixa.valor_inicial
         return total - self.custo_items()
 
+    def get_caixa(self):
+        valor = 0
+        for pedido in Pedido.objects.all():
+            valor = valor + pedido.total
+        caixa = Caixa.objects.first()
+        caixa.valor_total = caixa.valor_inicial + valor
+        caixa.save()
+        return caixa
+
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ListInitial, self).get_context_data(**kwargs)
-        caixa = Caixa.objects.first()
+        caixa = self.get_caixa()
         context['caixa'] = caixa
         context['lucro'] = self.calc_lucro(caixa)
         return context

@@ -83,9 +83,7 @@ class Pedido(TimeStamped):
             total = total + item.total
         self.total = total
         self.status = StatusPedido.FECHADO
-        caixa = Caixa.objects.first()
-        caixa.valor_total = caixa.valor_total + self.total
-        caixa.save()
+
         super(Pedido, self).save()
 
 
