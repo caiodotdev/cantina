@@ -12,7 +12,7 @@ djangorestframework
 django-filter
 django-datatables-view
 django-money
-gunicorn==20.1.0
+gunicorn
 markdown
 psycopg2-binary==2.8.6
 pytz==2021.1
@@ -21,5 +21,5 @@ requests==2.9.1
 six
 Pillow
 pyimgur
-whitenoise==2.0.6
+whitenoise
 urllib3

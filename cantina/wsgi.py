@@ -15,7 +15,6 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'cantina.settings')
 
 application = get_wsgi_application()
 
- 
 from whitenoise.django import DjangoWhiteNoise
- 
+
 application = DjangoWhiteNoise(application)
