@@ -26,8 +26,10 @@ def total_restantes(qs):
 @register.filter()
 def total_pct_vendidos(qs):
     vendidos = total_vendidos(qs)
-    total_initial = vendidos + total_restantes(qs)
-    return int(vendidos * 100 / total_initial)
+    if vendidos:
+        total_initial = vendidos + total_restantes(qs)
+        return int(vendidos * 100 / total_initial)
+    return 0
 
 
 @register.filter()
@@ -39,8 +41,10 @@ def total_amount_vendidos(qs):
 def total_pct_restantes(qs):
     vendidos = total_vendidos(qs)
     restantes = total_restantes(qs)
-    total_initial = vendidos + restantes
-    return int(restantes * 100 / total_initial)
+    if restantes:
+        total_initial = vendidos + restantes
+        return int(restantes * 100 / total_initial)
+    return 0
 
 
 @register.filter()
