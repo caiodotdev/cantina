@@ -25,7 +25,6 @@ class ItemInline(admin.TabularInline):
     model = Item
 
 
-
 class TipoItemAdmin(admin.ModelAdmin):
     list_filter = []
     search_fields = (
@@ -34,12 +33,12 @@ class TipoItemAdmin(admin.ModelAdmin):
     inlines = [ItemInline]
     list_display = ("id", "nome")
 
+
 admin.site.register(TipoItem, TipoItemAdmin)
 
 
 class ItemPedidoInline(admin.TabularInline):
     model = ItemPedido
-
 
 
 class ItemAdmin(admin.ModelAdmin):
@@ -48,14 +47,14 @@ class ItemAdmin(admin.ModelAdmin):
         'id',
     )
     inlines = [ItemPedidoInline]
-    list_display = ("id", "tipo", "nome", "img", "qtd_total", "valor")
+    list_display = ("id", "tipo", "nome", "img", "qtd_total", "valor_final")
+
 
 admin.site.register(Item, ItemAdmin)
 
 
 class ItemPedidoInline(admin.TabularInline):
     model = ItemPedido
-
 
 
 class PedidoAdmin(admin.ModelAdmin):
@@ -65,6 +64,7 @@ class PedidoAdmin(admin.ModelAdmin):
     )
     inlines = [ItemPedidoInline]
     list_display = ("id", "cliente", "total", "tipo_pgto", "status")
+
 
 admin.site.register(Pedido, PedidoAdmin)
 
@@ -77,4 +77,8 @@ class ItemPedidoAdmin(admin.ModelAdmin):
     inlines = []
     list_display = ("id", "pedido", "item", "qtd", "total")
 
+
 admin.site.register(ItemPedido, ItemPedidoAdmin)
+
+
+admin.site.register(Caixa)

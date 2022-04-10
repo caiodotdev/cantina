@@ -48,10 +48,21 @@ class Item(TimeStamped):
         MaxValueValidator(500),
         MinValueValidator(0)
     ])
-    valor = MoneyField(max_digits=14, decimal_places=2, default_currency='BRL')
+    qtd_inicial = models.IntegerField(default=0, validators=[
+        MaxValueValidator(500),
+        MinValueValidator(0)
+    ])
+    valor_custo = MoneyField(max_digits=14, decimal_places=2, default_currency='BRL', blank=True, null=True)
+    valor_final = MoneyField(max_digits=14, decimal_places=2, default_currency='BRL')
 
     def __str__(self):
         return "%s" % self.nome
+
+
+
+class Caixa(TimeStamped):
+    valor_inicial = MoneyField(max_digits=14, decimal_places=2, default_currency='BRL', blank=True, null=True)
+    valor_total = MoneyField(max_digits=14, decimal_places=2, default_currency='BRL', blank=True, null=True)
 
 
 class Pedido(TimeStamped):
@@ -72,6 +83,9 @@ class Pedido(TimeStamped):
             total = total + item.total
         self.total = total
         self.status = StatusPedido.FECHADO
+        caixa = Caixa.objects.first()
+        caixa.valor_total = caixa.valor_total + self.total
+        caixa.save()
         super(Pedido, self).save()
 
 
@@ -87,13 +101,15 @@ class ItemPedido(TimeStamped):
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
         item = self.item
-        self.total = item.valor * self.qtd
+        self.total = item.valor_final * self.qtd
         item.qtd_total = item.qtd_total - self.qtd
         item.save()
         return super(ItemPedido, self).save(force_insert=False, force_update=False, using=None,
                                             update_fields=None)
 
+
 # Abrir Pedido (listagem sem select de itens) - (nome, tipo pgto) ->
 # Select Item -> ItemPedidoForm w/ Pedido em context or param.
 # Carrinho -> ver tabela -> fechar pedido ou continuar comprando
 # encerra e abre (listagem sem select de itens)
+

@@ -61,7 +61,7 @@ class ItemFormSetManagement(object):
 class ItemFilter(django_filters.FilterSet):
     class Meta:
         model = Item
-        fields = ["id", "tipo__nome", "nome", "img", "qtd_total", "valor"]
+        fields = ["id", "tipo__nome", "nome", "img", "qtd_total","valor_custo",  "valor_final"]
 
 
 class List(LoginRequiredMixin, ItemMixin, ListView):
@@ -263,8 +263,8 @@ class Delete(LoginRequiredMixin, ItemMixin, PermissionRequiredMixin, DeleteView)
 
 class ItemListJson(BaseDatatableView):
     model = Item
-    columns = ("id", "tipo", "nome", "img", "qtd_total", "valor")
-    order_columns = ["id", "tipo__nome", "nome", "img", "qtd_total", "valor"]
+    columns = ("id", "tipo", "nome", "img", "qtd_total", "valor_final")
+    order_columns = ["id", "tipo__nome", "nome", "img", "qtd_total", "valor_final"]
     max_display_length = 500
 
     def filter_queryset(self, qs):

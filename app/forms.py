@@ -6,6 +6,7 @@ from . import (
     models
 )
 
+
 class BaseForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(BaseForm, self).__init__(*args, **kwargs)
@@ -37,11 +38,10 @@ class TipoItemFormToInline(BaseForm, ModelForm):
         super(TipoItemFormToInline, self).__init__(*args, **kwargs)
 
 
-
 class ItemForm(BaseForm, ModelForm):
     class Meta:
         model = models.Item
-        fields = ("id", "tipo", "nome", "img", "qtd_total", "valor")
+        fields = ("id", "tipo", "nome", "img", "qtd_total", "valor_custo", "valor_final")
         widgets = generate_bootstrap_widgets_for_all_fields(models.Item)
 
     def __init__(self, *args, **kwargs):
@@ -51,7 +51,7 @@ class ItemForm(BaseForm, ModelForm):
 class ItemFormToInline(BaseForm, ModelForm):
     class Meta:
         model = models.Item
-        fields = ("id", "tipo", "nome", "img", "qtd_total", "valor")
+        fields = ("id", "tipo", "nome", "img", "qtd_total", "valor_final")
         widgets = generate_bootstrap_widgets_for_all_fields(models.Item)
 
     def __init__(self, *args, **kwargs):
@@ -79,7 +79,6 @@ class PedidoFormToInline(BaseForm, ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(PedidoFormToInline, self).__init__(*args, **kwargs)
-
 
 
 class ItemPedidoForm(BaseForm, ModelForm):

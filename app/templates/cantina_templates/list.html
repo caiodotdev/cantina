@@ -14,6 +14,87 @@
     </div> <!-- /#top -->
     <hr/>
     <div class="row">
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">Total Vendidos</div>
+                <div class="panel-body">
+                    <div class="row text-center">
+                        <div class="col-xs-12">
+                            <div class="pull-left">
+                                <h3>{{ items|total_vendidos }} <span
+                                        class="badge">{{ items|total_pct_vendidos }}%</span>
+                                </h3>
+                            </div>
+                            <div class="pull-right">
+                                <h4>R$ {{ items|total_amount_vendidos }}</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel panel-warning">
+                <!-- Default panel contents -->
+                <div class="panel-heading">Salgados Restantes</div>
+                <div class="panel-body">
+                    <div class="text-center">
+                        <h3>{{ items|total_restantes }} <span class="badge">{{ items|total_pct_restantes }}%</span></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">PIX</div>
+                <div class="panel-body">
+                    <div class="text-center">
+                        <h3>{{ items|total_amount_pix }} <span class="badge">PIX</span></h3>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel panel-info">
+                <!-- Default panel contents -->
+                <div class="panel-heading">Dinheiro</div>
+                <div class="panel-body">
+                    <div class="text-center">
+                        <h3>{{ items|total_amount_dinheiro }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">Caixa</div>
+                <div class="panel-body">
+                    <div class="text-center">
+                        <h3>{{ caixa.valor_total }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel panel-success">
+                <!-- Default panel contents -->
+                <div class="panel-heading">Lucro</div>
+                <div class="panel-body">
+                    <div class="text-center">
+                        <h3>{{ lucro }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <div class="row">
         {% for item in items %}
             <div class="col-sm-3">
                 <div class="panel panel-default">
